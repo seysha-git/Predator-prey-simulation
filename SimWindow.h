@@ -1,10 +1,9 @@
 #pragma once
 
 #include "AnimationWindow.h"
-#include "settings.h"
+#include "Settings.h"
+#include "EnvBoard.h"
 #include "widgets/Button.h"
-#include "widgets/TextInput.h"
-#include "widgets/DropdownList.h"
 
 #include <string>
 #include <vector>
@@ -12,11 +11,20 @@
 
 class SimWindow : public TDT4102::AnimationWindow {
 public:
-    static constexpr int pad = 30;
-    static constexpr int btnW = 200;
-    static constexpr int btnH = 90;
-
+    //Medlemsvariabler og klasser
+    int toggle_state = 1;
     SimWindow(TDT4102::Point position, int width, int height, const std::string& screen_title);
-private:
+    Settings s;
+    // Input GUI elementer
+    TDT4102::Button toggleBtn;
+    
+
+
+    //Medlemsfunksjoner
+    void draw_grid();
+    void update_grid();
+
+    void toggle_start_stop();
+
     
 };

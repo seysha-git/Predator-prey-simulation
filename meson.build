@@ -28,6 +28,7 @@ src = []
 exe = executable(
   'program',
   src,
+'EnvBoard.cpp',
 'SimWindow.cpp',
 'main.cpp',
   dependencies : [animationwindow_dep, sdl2_dep, std_lib_facilities_dep],
