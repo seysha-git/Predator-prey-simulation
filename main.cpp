@@ -1,9 +1,13 @@
 #include <iostream>
-#include "SimWindow.h"
+#include "GameWindow.h"
 
 int main() {
-    Settings settings;
-    SimWindow window({settings.windowPositionX, settings.windowPositionY}, settings.windowWidth, settings.windowHeight, "My window");
-    window.wait_for_close();
+    GameWindow g;
+    g.show_start_screen();
+    while(g.running){
+        g.new_game();
+        g.show_over_screen();
+    }
+
     return 0; 
 }

@@ -23,14 +23,19 @@ else
   compiler_flags = ['-Wconversion', '-fdiagnostics-color=always', '-Werror=return-type', '-fcolor-diagnostics', '-fansi-escape-codes']
 endif
 
-src = []
+src = [
+  'GameWindow.cpp',
+  'main.cpp',
+  'modules/GameObject.cpp',
+  'modules/Human.cpp',
+  'modules/Ghost.cpp',
+  'modules/Hinderence.cpp'
+]
+
 
 exe = executable(
   'program',
   src,
-'EnvBoard.cpp',
-'SimWindow.cpp',
-'main.cpp',
   dependencies : [animationwindow_dep, sdl2_dep, std_lib_facilities_dep],
   cpp_args : compiler_flags
 )
