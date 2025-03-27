@@ -15,5 +15,5 @@ TDT4102::Point pos {x, y};
 //Medlems funksjoner
 GameObject() : width(50), height(50) {} 
 GameObject(int width, int height) : width(width), height(height) {};
-void update();
+virtual void draw(TDT4102::AnimationWindow *main_window);
 };

@@ -27,10 +27,10 @@ void Human::move(char state){
 }
 
 void Human::update(){
-    if(pos.x + width>= s.windowWidth){
+    if(pos.x + width >= s.windowWidth){
         pos.x = s.windowWidth - width;
     }
-    if(pos.y + height>= s.windowHeight){
+    if(pos.y + height >= s.windowHeight){
         pos.y = s.windowHeight - height;
     }
     if(pos.y<=0){
@@ -39,4 +39,9 @@ void Human::update(){
     if(pos.x<= 0){
         pos.x = 0;
     }
+}
+
+void Human::set_start_pos(int new_x, int new_y){
+    pos.x = new_x;
+    pos.y = new_y;
 }

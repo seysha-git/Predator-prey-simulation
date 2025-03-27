@@ -1,8 +1,6 @@
 #include "GameWindow.h"
 #include <iostream>
 
-
-
 void GameWindow::run(){
     playing = true;
     while(!window.should_close()){
@@ -12,12 +10,16 @@ void GameWindow::run(){
         window.next_frame();
     }
 }
+void GameWindow::add_object(GameObject *new_object){
+    all_objects.push_back(new_object);
+}
 
 void GameWindow::new_game(){
     xPosition = 0;
-    //ghosts = {};
+    player.set_start_pos(100, 300);
+    add_object(&player);
+    add_object(&start_ghost);
     //hinderences = {};
-    std::cout << "New game starting";
     run();
 }
 
@@ -26,18 +28,21 @@ void GameWindow::show_start_screen(){
 }
 
 void GameWindow::show_over_screen(){
-    std::cout << "Show over screen";
+    std::cout << '\n' << "Show over screen";
     running = false;
 }
 
 void GameWindow::update(){
     player.update();
+    start_ghost.update();
 }
 void GameWindow::draw_animation(){
     window.draw_rectangle(topLeftCorner, freezone_width, s.windowHeight);
     window.draw_rectangle(topRightCorner, freezone_width, s.windowHeight);
-    window.draw_rectangle(player.pos, player.width, player.height, player.color);
-    
+
+    for(int i = 0; i < all_objects.size(); i++){
+        all_objects.at(i)->draw(&window);
+    }
 }
 
 void GameWindow::events(){

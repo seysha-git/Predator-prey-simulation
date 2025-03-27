@@ -8,6 +8,5 @@ int main() {
         g.new_game();
         g.show_over_screen();
     }
-
     return 0; 
 }

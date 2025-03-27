@@ -13,17 +13,16 @@
 class GameWindow {
 public:
     //Medlemsvariabler og klasser
-    TDT4102::AnimationWindow window;
     Settings s;
+    TDT4102::AnimationWindow window{200, 80, s.windowWidth, s.windowHeight};
     //Medlemsvariabler
     bool playing;
-    int max_hinderences;
-    //std::vector<Ghost> ghosts;
+    std::vector<Ghost> ghosts;
     //std::vector<Hinderence> hinderences;
-    std::vector<GameObject> all_objects;
+    std::vector<GameObject*> all_objects;
     TDT4102::Point topLeftCorner {0, 0};
     int freezone_width = 200;
-    TDT4102::Point topRightCorner {s.windowWidth-freezone_width, 0};
+    TDT4102::Point topRightCorner {s.windowWidth - freezone_width, 0};
     bool running = true;
     int xPosition;
     Human player;
@@ -33,6 +32,7 @@ public:
     void run();
     void events();
     void update();
+    void add_object(GameObject *new_object);
     void show_start_screen();
     void show_over_screen();
 
