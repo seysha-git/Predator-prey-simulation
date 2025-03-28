@@ -17,6 +17,7 @@ void Human::move(TDT4102::AnimationWindow *main_window){
     if(main_window->is_key_down(KeyboardKey::A)){
         pos.x -= vx;
     }
+    std::cout << '\n' << "Moving position: " << pos.x << '\n';
 }
 
 void Human::update(TDT4102::AnimationWindow *main_window){
@@ -47,16 +48,8 @@ bool Human::sheep_collided(std::shared_ptr<Sheep> sheep) {
     int sheep_width = sheep->width;
     int sheep_height = sheep->height;
 
-    int human_pos_x = this->pos.x;
-    int human_pos_y = this->pos.y;
-    int human_width = this->width;
-    int human_height = this->height;
-
-    bool no_overlap_x = (human_pos_x + human_width <= sheep_pos_x) || (sheep_pos_x + sheep_width <= human_pos_x);
-    
-    bool no_overlap_y = (human_pos_y + human_height <= sheep_pos_y) || (sheep_pos_y + sheep_height <= human_pos_y);
-    
-    return !(no_overlap_x || no_overlap_y);
+    std::cout << "Sheep: " << sheep_pos_x << " Me: " << pos.x << "||" << pos.y;
+    return true;
 }
 
 

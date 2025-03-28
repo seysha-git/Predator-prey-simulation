@@ -20,7 +20,7 @@ public:
     std::vector<std::shared_ptr<Sheep>> sheeps;
     TDT4102::Point topLeftCorner {0, 0};
     Ghost start_ghost;
-    Human player;
+    std::shared_ptr<Human> player{new Human{}};
     int freezone_width = 200;
     TDT4102::Point topRightCorner {s.windowWidth - freezone_width, 0};
     int curr_sheeps = 0;
