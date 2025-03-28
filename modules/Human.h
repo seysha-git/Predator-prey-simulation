@@ -9,7 +9,8 @@ class Human : public GameObject{
     int width = 50; 
     int height = 50;
     TDT4102::Point pos {x, y};
-    void move(char state);
+    void move(TDT4102::AnimationWindow *main_window);
     void update();
     void set_start_pos(int new_x, int new_y);
+    void draw(TDT4102::AnimationWindow *main_window) override;
 };

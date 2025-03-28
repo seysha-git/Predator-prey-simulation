@@ -4,7 +4,6 @@
 void GameWindow::run(){
     playing = true;
     while(!window.should_close()){
-        events();
         update();
         draw_animation();
         window.next_frame();
@@ -15,11 +14,9 @@ void GameWindow::add_object(GameObject *new_object){
 }
 
 void GameWindow::new_game(){
-    xPosition = 0;
     player.set_start_pos(100, 300);
     add_object(&player);
     add_object(&start_ghost);
-    //hinderences = {};
     run();
 }
 
@@ -35,6 +32,8 @@ void GameWindow::show_over_screen(){
 void GameWindow::update(){
     player.update();
     start_ghost.update();
+
+    player.move(&window);
 }
 void GameWindow::draw_animation(){
     window.draw_rectangle(topLeftCorner, freezone_width, s.windowHeight);
@@ -45,19 +44,5 @@ void GameWindow::draw_animation(){
     }
 }
 
-void GameWindow::events(){
-    //Player controls
-    if(window.is_key_down(KeyboardKey::D)){
-        player.move('D');
-    }
-    if(window.is_key_down(KeyboardKey::W)){
-        player.move('W');
-    }
-    if(window.is_key_down(KeyboardKey::S)){
-        player.move('S');
-    }
-    if(window.is_key_down(KeyboardKey::A)){
-        player.move('A');
-    }
-}
+
 

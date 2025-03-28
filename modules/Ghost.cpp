@@ -22,7 +22,6 @@ void Ghost::update() {
 }
 
 void Ghost::draw(TDT4102::AnimationWindow *main_window) {
-    std::cout << pos.x << "  " << pos.y;
     main_window->draw_circle(pos, radius, TDT4102::Color::black);
 }
 

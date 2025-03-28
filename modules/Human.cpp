@@ -1,28 +1,20 @@
 #include "Human.h"
+#include <iostream>
 
 
-
-void Human::move(char state){
-    switch (state)
-    {
-    case 'W':
-        pos.y -= vy;
-        break;
-    
-    case 'S':
-        pos.y += vy;
-        break;
-    
-    case 'A':
-        pos.x -= vx;
-        break;
-    
-    case 'D':
+void Human::move(TDT4102::AnimationWindow *main_window){
+    if(main_window->is_key_down(KeyboardKey::D)){
         pos.x += vx;
-        break;
-    
-    default:
-        break;
+        std::cout << '\n' << "Position: " << pos.x << '\n';
+    }
+    if(main_window->is_key_down(KeyboardKey::W)){
+        pos.y -= vy;
+    }
+    if(main_window->is_key_down(KeyboardKey::S)){
+        pos.y += vy;
+    }
+    if(main_window->is_key_down(KeyboardKey::A)){
+        pos.x -= vx;
     }
 }
 
@@ -44,4 +36,9 @@ void Human::update(){
 void Human::set_start_pos(int new_x, int new_y){
     pos.x = new_x;
     pos.y = new_y;
+}
+
+void Human::draw(TDT4102::AnimationWindow *main_window) {
+    std::cout << "Drawing human: (" << pos.x << ", " << pos.y << ")\n";
+    main_window->draw_rectangle(pos, width, height, color);
 }
