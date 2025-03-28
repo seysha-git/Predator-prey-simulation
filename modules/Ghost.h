@@ -9,13 +9,13 @@ class Ghost : public GameObject{
     //Medlems funksjoner
     int vel_x = 3;
     int vel_y = 2;
-    double radius{50};
+    int radius{50};
     TDT4102::Point pos;
     Ghost(){
         std::random_device rd;
         std::default_random_engine generator{rd()};
-        std::uniform_int_distribution<int> distribution_x{s.freezone_width, s.windowWidth - s.freezone_width};
-        std::uniform_int_distribution<int> distribution_y{static_cast<int>(radius), s.windowHeight - static_cast<int>(radius)};
+        std::uniform_int_distribution<int> distribution_x{s.freezone_width + radius, s.windowWidth - s.freezone_width-radius};
+        std::uniform_int_distribution<int> distribution_y{radius, s.windowHeight - radius};
         int start_x = distribution_x(generator);
         int start_y = distribution_y(generator);
         this->pos = {start_x, start_y};

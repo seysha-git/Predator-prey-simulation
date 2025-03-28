@@ -17,7 +17,7 @@ void Human::move(TDT4102::AnimationWindow *main_window){
     if(main_window->is_key_down(KeyboardKey::A)){
         pos.x -= vx;
     }
-    std::cout << '\n' << "Moving position: " << pos.x << '\n';
+    //std::cout << '\n' << "Moving position: " << pos.x << '\n';
 }
 
 void Human::update(TDT4102::AnimationWindow *main_window){
@@ -43,15 +43,59 @@ void Human::set_start_pos(int new_x, int new_y){
 
 
 bool Human::sheep_collided(std::shared_ptr<Sheep> sheep) {
-    int sheep_pos_x = sheep->pos.x;
-    int sheep_pos_y = sheep->pos.y;
-    int sheep_width = sheep->width;
-    int sheep_height = sheep->height;
-
-    std::cout << "Sheep: " << sheep_pos_x << " Me: " << pos.x << "||" << pos.y;
-    return true;
+    if( (pos.x+width >= sheep->pos.x) &&
+        (pos.x <= sheep->pos.x + sheep->width) &&
+        (pos.y + height >= sheep->pos.y) &&
+        (pos.y <= sheep->y + sheep->height)
+    ){
+        return true;
+    }
+    return false;
 }
 
+bool Human::ghost_collided(std::shared_ptr<Ghost> ghost){
+    float testX = ghost->pos.x;
+    float testY = ghost->pos.y;
+
+    if(ghost->pos.x < pos.x){ //Test left edge
+        testX = pos.x;
+    }
+    else if(ghost->pos.x > pos.x+width){ //right edge
+        testX = pos.x + width;
+    }
+    if(ghost->pos.y < pos.y){ // top edge
+        testY = pos.y;
+    }
+    else if(ghost->pos.y > pos.y + height){ // bottom edge
+        testY = pos.y + height;
+    }
+    //distance from closest edge
+    float distX = ghost->pos.x - testX;
+    float distY = ghost->pos.y-testY;
+    float distance = sqrt( (distX*distX) + (distY*distY));
+
+    //distance less than radius, collision
+    if(distance <= ghost->radius){
+        return true;
+    }
+    return false;
+}
+
+bool Human::left_freezone_collided(int freezone){
+    if(pos.x <= freezone){
+        return true;
+    }
+    return false;
+}
+
+void Human::carry_sheep(){
+    vx = vy = 2;
+    carry = true;
+}
+void Human::release_sheep(){
+    vx = vy = 5;
+    carry = false;
+}
 
 void Human::draw(TDT4102::AnimationWindow *main_window) {
     //std::cout << "Pos" << pos.x << " " << pos.y << '\n';

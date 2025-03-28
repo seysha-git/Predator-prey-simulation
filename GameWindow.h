@@ -24,6 +24,8 @@ public:
     int freezone_width = 200;
     TDT4102::Point topRightCorner {s.windowWidth - freezone_width, 0};
     int curr_sheeps = 0;
+    int curr_ghosts = 0;
+    int max_ghosts = 1;
     bool playing;
     bool running = true;
 
@@ -34,6 +36,9 @@ public:
     void add_object(std::shared_ptr<GameObject> new_object);
     void add_sheep(std::shared_ptr<Sheep> new_sheep);
     void add_ghost(std::shared_ptr<Ghost> new_ghost);
+    void delete_object(std::shared_ptr<GameObject> new_object);
+    void delete_sheep(std::shared_ptr<Sheep> new_sheep);
+    //void delete_ghost(std::shared_ptr<Ghost> new_ghost);
     void show_start_screen();
     void show_over_screen();
 

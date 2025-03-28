@@ -8,6 +8,7 @@ class Sheep : public GameObject{
     int width = 30; 
     int height = 30;
     TDT4102::Point pos;
+    TDT4102::Color color = TDT4102::Color::red;
     Sheep(){
         std::random_device rd;
         std::default_random_engine generator{rd()};
@@ -16,7 +17,6 @@ class Sheep : public GameObject{
         int start_x = distribution_x(generator);
         int start_y = distribution_y(generator);
         pos = {start_x, start_y};
-        TDT4102::Color color = TDT4102::Color::beige;
     };
     virtual ~Sheep() { }
     virtual void update(TDT4102::AnimationWindow *main_window) override;
