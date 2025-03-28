@@ -2,18 +2,19 @@
 #include <iostream>
 #include <cmath>
 
-void Ghost::update() {
-    if ((pos.x + radius + vel_x) >= s.windowWidth - s.freezone_width+20) {
+void Ghost::update(TDT4102::AnimationWindow *main_window) {
+    //if ((pos.x + radius) >= s.windowWidth - s.freezone_width) {
+    if (pos.x >= (s.windowWidth-s.freezone_width-radius)){
         vel_x *= -1;
     }
-    else if (pos.x + vel_x<= s.freezone_width) {
+    else if (pos.x <= s.freezone_width+radius) {
         vel_x *= -1;
     }
 
-    if ((pos.y + radius + vel_y) >= s.windowHeight) {
+    if ((pos.y + radius) >= s.windowHeight) {
         vel_y *= -1;
     }
-    else if (pos.y + vel_y <= 0) {
+    else if (pos.y <= 0) {
         vel_y *= -1;
     }
 
