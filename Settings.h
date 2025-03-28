@@ -12,7 +12,6 @@ struct Settings {
     const static constexpr int pad = 30;
 
     const int max_hinderence = 3;
-    const int max_sheep_danger = 3;
     const int freezone_width = 200; 
     TDT4102::Color navColor = TDT4102::Color::dark_green;
     TDT4102::Color cellColor = TDT4102::Color::dark_grey;

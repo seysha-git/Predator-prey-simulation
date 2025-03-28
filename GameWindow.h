@@ -19,13 +19,17 @@ public:
     std::vector<std::shared_ptr<Ghost>> ghosts;
     std::vector<std::shared_ptr<Sheep>> sheeps;
     TDT4102::Point topLeftCorner {0, 0};
-    Ghost start_ghost;
-    std::shared_ptr<Human> player{new Human{}};
     int freezone_width = 200;
     TDT4102::Point topRightCorner {s.windowWidth - freezone_width, 0};
+    TDT4102::Point TextPos {10, 40};
+    std::shared_ptr<Human> player{new Human{}};
+    
     int curr_sheeps = 0;
     int curr_ghosts = 0;
     int max_ghosts = 1;
+    int max_sheep = 3;
+    int sheeps_saved = 0;
+
     bool playing;
     bool running = true;
 
@@ -43,5 +47,4 @@ public:
     void show_over_screen();
 
     void draw_animation();
-    //void draw_text();
 };

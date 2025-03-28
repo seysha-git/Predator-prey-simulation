@@ -49,7 +49,7 @@ void GameWindow::update(){
     }
 
     //spawn right_side sheeps
-    while(curr_sheeps < s.max_sheep_danger){
+    while(curr_sheeps < max_sheep){
         std::shared_ptr<Sheep> new_sheep{new Sheep{}};
         add_object(new_sheep);
         add_sheep(new_sheep);
@@ -83,13 +83,17 @@ void GameWindow::update(){
     }
     if(player->carry && player->left_freezone_collided(freezone_width)){
         max_ghosts += 1;
-        player->release_sheep();       
+        player->release_sheep();   
+        sheeps_saved += 1;    
     }
 }
-void GameWindow::draw_animation(){
-    window.draw_rectangle(topLeftCorner, freezone_width, s.windowHeight);
-    window.draw_rectangle(topRightCorner, freezone_width, s.windowHeight);
 
+void GameWindow::draw_animation(){
+    window.draw_rectangle(topLeftCorner, freezone_width, s.windowHeight, TDT4102::Color::dark_olivegreen);
+    window.draw_rectangle(topRightCorner, freezone_width, s.windowHeight, TDT4102::Color::dark_olivegreen);
+    window.draw_rectangle(topLeftCorner, freezone_width, 100, TDT4102::Color::ghost_white);
+    std::string message = "Sheep saved:" + std::to_string(sheeps_saved) + "/" + std::to_string(max_sheep);
+    window.draw_text(TextPos, message, TDT4102::Color::black, 23, TDT4102::Font::courier_bold_italic);
     for(int i = 0; i < all_objects.size(); i++){
         all_objects.at(i)->draw(&window);
     }

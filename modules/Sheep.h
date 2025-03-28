@@ -12,8 +12,8 @@ class Sheep : public GameObject{
     Sheep(){
         std::random_device rd;
         std::default_random_engine generator{rd()};
-        std::uniform_int_distribution<int> distribution_x{s.windowWidth - s.freezone_width, s.windowWidth};
-        std::uniform_int_distribution<int> distribution_y{height, s.windowHeight - static_cast<int>(height)};
+        std::uniform_int_distribution<int> distribution_x{s.windowWidth - s.freezone_width+width, s.windowWidth-width};
+        std::uniform_int_distribution<int> distribution_y{height+width, s.windowHeight - height};
         int start_x = distribution_x(generator);
         int start_y = distribution_y(generator);
         pos = {start_x, start_y};
