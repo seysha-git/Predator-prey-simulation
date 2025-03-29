@@ -72,7 +72,7 @@ void GameWindow::draw_animation(){
     window.draw_rectangle(topLeftCorner, freezone_width, s.windowHeight, TDT4102::Color::dark_olivegreen);
     window.draw_rectangle(topRightCorner, freezone_width, s.windowHeight, TDT4102::Color::dark_olivegreen);
     window.draw_rectangle(topLeftCorner, freezone_width, 100, TDT4102::Color::ghost_white);
-    std::string message = "Sheep saved:" + std::to_string(sheeps_saved) + "/" + std::to_string(max_sheep);
+    std::string message = "Sheep saved:" + std::to_string(sheeps_saved);
     window.draw_text(TextPos, message, TDT4102::Color::black, 23, TDT4102::Font::courier_bold_italic);
     for(int i = 0; i < all_objects.size(); i++){
         all_objects.at(i)->draw(&window);
@@ -80,7 +80,27 @@ void GameWindow::draw_animation(){
 
 }
 void GameWindow::show_start_screen(){
-    std::cout << "Showing start screen";
+    bool waiting = true;
+    while(waiting){
+        window.draw_rectangle(topLeftCorner,s.windowWidth, s.windowHeight, TDT4102::Color::bisque);
+        std::string message1 = "Save the red sheeps";
+        std::string message2 = "Difficulty level: U(Easy) | O(Hard)";
+        std::string message3 = "N to start | E to exit";
+        std::string message4 = "Controls: W.A.S.D";
+        window.draw_text(TitlePos, message1, TDT4102::Color::black, 80, TDT4102::Font::courier_bold_italic);
+        window.draw_text(StatsPos, message2, TDT4102::Color::black, 50, TDT4102::Font::courier_bold_italic);
+        window.draw_text(NewPos, message3, TDT4102::Color::black, 30, TDT4102::Font::courier_bold_italic);
+        window.draw_text(EndPos, message4, TDT4102::Color::black, 30, TDT4102::Font::courier_bold_italic);
+        window.next_frame();
+        if(window.is_key_down(KeyboardKey::N)){
+            waiting = false;
+            playing = true;
+        }
+        if(window.is_key_down(KeyboardKey::E)){
+            waiting = false;
+            running = false;
+        }
+    }
 }
 void GameWindow::show_over_screen(){
     if(!running){
@@ -90,9 +110,9 @@ void GameWindow::show_over_screen(){
     while(waiting){
         window.draw_rectangle(topLeftCorner,s.windowWidth, s.windowHeight, TDT4102::Color::bisque);
         std::string message1 = "Game over";
-        std::string message2 = "Sheep saved:" + std::to_string(sheeps_saved) + "/" + std::to_string(max_sheep);
-        std::string message3 = "Press N for new game";
-        std::string message4 = "Press E to end game";
+        std::string message2 = "Sheep saved:" + std::to_string(sheeps_saved);
+        std::string message3 = "N for new game";
+        std::string message4 = "E to end game";
         
         window.draw_text(TitlePos, message1, TDT4102::Color::black, 80, TDT4102::Font::courier_bold_italic);
         window.draw_text(StatsPos, message2, TDT4102::Color::black, 50, TDT4102::Font::courier_bold_italic);

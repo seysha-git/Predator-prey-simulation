@@ -22,8 +22,8 @@ public:
     int freezone_width = 200;
     TDT4102::Point topRightCorner {s.windowWidth - freezone_width, 0};
     TDT4102::Point TextPos {10, 40};
-    TDT4102::Point TitlePos {s.windowWidth/4+50, s.windowHeight/2-300};
-    TDT4102::Point StatsPos {s.windowWidth/4+50, s.windowHeight/2-150};
+    TDT4102::Point TitlePos {s.windowWidth/4-150, s.windowHeight/2-300};
+    TDT4102::Point StatsPos {s.windowWidth/4-200, s.windowHeight/2-150};
     TDT4102::Point NewPos {150, s.windowHeight/2};
     TDT4102::Point EndPos {600, s.windowHeight/2};
     std::shared_ptr<Human> player{new Human{}};
