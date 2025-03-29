@@ -1,4 +1,4 @@
-# Virus-spread-simulation
+#Rescue game
 
 ## Tidsplan
 - **Prosjektstart:** 20. mars  
