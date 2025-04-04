@@ -8,8 +8,6 @@
 #include "./modules/GameObject.h"
 #include <string>
 #include <vector>
-#include <functional>
-
 class GameWindow {
 public:
     //Medlemsvariabler og klasser
@@ -27,7 +25,7 @@ public:
     TDT4102::Point NewPos {150, s.windowHeight/2};
     TDT4102::Point EndPos {600, s.windowHeight/2};
     std::shared_ptr<Human> player{new Human{}};
-    
+    Sheep sheep;
     int curr_sheeps;
     int curr_ghosts;
     int max_ghosts;

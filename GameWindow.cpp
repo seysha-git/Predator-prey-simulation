@@ -15,6 +15,7 @@ void GameWindow::new_game(){
     add_object(player);
     run();
 }
+
 void GameWindow::run(){
     playing = true;
     while(!window.should_close() && playing){
@@ -23,6 +24,7 @@ void GameWindow::run(){
         window.next_frame();
     }
 }
+
 void GameWindow::update(){
     for(int i = 0; i < all_objects.size(); i++){
         all_objects.at(i)->update(&window);
@@ -77,8 +79,8 @@ void GameWindow::draw_animation(){
     for(int i = 0; i < all_objects.size(); i++){
         all_objects.at(i)->draw(&window);
     }
-
 }
+
 void GameWindow::show_start_screen(){
     bool waiting = true;
     while(waiting){

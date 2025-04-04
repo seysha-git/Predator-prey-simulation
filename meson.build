@@ -26,7 +26,6 @@ endif
 src = [
   'GameWindow.cpp',
   'main.cpp',
-  'modules/GameObject.cpp',
   'modules/Sheep.cpp',
   'modules/Human.cpp',
   'modules/Ghost.cpp',
